@@ -1,53 +1,55 @@
 #include <a_samp>
-#include <foreach>
+#include <foreach> // https://github.com/karimcambridge/SAMP-foreach/releases
 
 /*
 
 	GivePlayerKeyVehicle(playerid, vehicleid)
-        Выдать ключ от авто (vehicleid) игроку (playerid)
-        возвращает 1 при удаче, возвращает 0 если авто не существует
+		Give the key to the car (vehicleid) to the player (playerid)
+		returns 1 with luck, returns 0 if the car does not exist
 
-    GivePlayerKeyVehicles(playerid, vehicles[], vhsize = sizeof vehicles)
-                Выдать ключи от автомобилей (vehicles) игроку (playerid)
-                Всегда возвращает 1
+	GivePlayerKeyVehicles(playerid, vehicles[], vhsize = sizeof vehicles)
+		Giving car keys (vehicles) to a player (playerid)
+		Always returns 1
 
-    RemovePlayerKeyVehicle(playerid, vehicleid)
-        Отобрать ключи от автомобиля (vehicleid)  у игрока (playerid)
-        Всегда возвращает 1
+	RemovePlayerKeyVehicle(playerid, vehicleid)
+		Take away the car keys (vehicleid) from the player (playerid)
+		Always returns 1
 
-    RemovePlayerKeyVehicles(playerid, vehicles[], vhsize = sizeof vehicles)
-       Забрать ключи у игрока (playerid) от автомобилей (vehicles)
-       Всегда возвращает 1
+	RemovePlayerKeyVehicles(playerid, vehicles[], vhsize = sizeof vehicles)
+		Pick up the keys from the player (playerid) from cars (vehicles)
+		Always returns 1
 
-    RemovePlayersKeyVehicle(vehicleid)
-        Отобрать ключи у всех игроков от автомобиля (vehicleid)
-        Всегда возвращает 1
+	RemovePlayersKeyVehicle(vehicleid)
+		Take away the keys from all players from the car (vehicleid)
+		Always returns 1
 
-    GetPlayerKeysVehicles(playerid, vehiclesid[], sizekeys = sizeof(vehiclesid))
-                Получить список автомобилей (vehiclesid) от которых есть ключи у игрока (playerid)
-                Всегда возвращает 1
+	GetPlayerKeysVehicles(playerid, vehiclesid[], sizekeys = sizeof(vehiclesid))
+		Get a list of cars (vehiclesid) from which the player has keys (playerid)
+		Always returns 1
 
-    IsPlayerKeyVehicle(playerid, vehicleid)
-        Есть ли ключи от автомобиля (vehicleid) у игрока (playerid)
-        Возвращает 0 если нет ключей, 1 если есть
+	IsPlayerKeyVehicle(playerid, vehicleid)
+		Does the player (playerid) have the keys to the car (vehicleid)
+		Returns 0 if there are no keys, 1 if there are
 
-    RemoveAllPlayerKeysVehicle(playerid)
-       Отобрать у игрока (playerid) все ключи
-       Всегда возвращает 1
+	RemoveAllPlayerKeysVehicle(playerid)
+		Take away all keys from the player (playerid)
+		Always returns 1
 
 
 	DestroyVehicle(vehicleid)
-		Автоматически забирает у всех игроков ключи
+		Automatically takes the keys from all players
 
 	CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, addsiren = 0)
-		При respawn_delay = -1 автомобиль уничтожается, у всех игроков отбираются ключи
+		When respawn_delay = -1, the car is destroyed, the keys are taken from all players
 
 */
 
-new bool:isremovekey[MAX_VEHICLES];
-native IsValidVehicle(vehicleid);
+static bool:isremovekey[MAX_VEHICLES];
+#if !defined IsValidVehicle
+        native IsValidVehicle(vehicleid);
+#endif
 
-new Iterator:global_keys[MAX_PLAYERS]<MAX_VEHICLES>;
+static Iterator:global_keys[MAX_PLAYERS]<MAX_VEHICLES>;
 public OnGameModeInit()
 {
 	Iter_Init(global_keys);
