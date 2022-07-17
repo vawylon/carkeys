@@ -1,4 +1,4 @@
-# CarKeys - Ключи от авто PAWN
+# CarKeys - Keys control cars SA-MP
 
 ![image](https://pawn-wiki.ru/uploads/imgs/img_1635253141___-1.png)
 
