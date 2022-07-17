@@ -1,8 +1,5 @@
-#include <a_samp>
-#include <foreach> // https://github.com/karimcambridge/SAMP-foreach/releases
-
 /*
-
+GitHub
 	GivePlayerKeyVehicle(playerid, vehicleid)
 		Give the key to the car (vehicleid) to the player (playerid)
 		returns 1 with luck, returns 0 if the car does not exist
@@ -43,6 +40,8 @@
 		When respawn_delay = -1, the car is destroyed, the keys are taken from all players
 
 */
+#include <a_samp>
+#include <foreach> // https://github.com/karimcambridge/SAMP-foreach/releases
 
 static bool:isremovekey[MAX_VEHICLES];
 #if !defined IsValidVehicle
@@ -50,22 +49,11 @@ static bool:isremovekey[MAX_VEHICLES];
 #endif
 
 static Iterator:global_keys[MAX_PLAYERS]<MAX_VEHICLES>;
-public OnGameModeInit()
+
+stock InitCarKeys()
 {
 	Iter_Init(global_keys);
-#if defined kgm__OnGameModeInit
-    return kgm__OnGameModeInit();
-#endif
 }
-#if defined _ALS_OnGameModeInit
-    #undef    OnGameModeInit
-#else
-    #define    _ALS_OnGameModeInit
-#endif
-#define    OnGameModeInit    kgm__OnGameModeInit
-#if defined kgm__OnGameModeInit
-forward kgm__OnGameModeInit();
-#endif
 
 
 public OnVehicleSpawn(vehicleid)
