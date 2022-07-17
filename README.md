@@ -1,4 +1,4 @@
-# CarKeys - Keys control cars SA-MP
+# CarKeys - Ключи от авто PAWN
 
 ![image](https://pawn-wiki.ru/uploads/imgs/img_1635253141___-1.png)
 
@@ -6,7 +6,7 @@
 > Give the key to the car (vehicleid) to the player (playerid)
 > returns 1 with luck, returns 0 if the car does not exist
 
-```
+```C
 new vehicle_infernus;
 public OnGameModeInit()
 {
@@ -25,7 +25,7 @@ CMD:addkey(playerid, p[])
 > Giving car keys (vehicles) to a player (playerid)
 > Always returns 1
 
-```
+```C
 new vehicle_infernus;
 public OnGameModeInit()
 {
@@ -44,7 +44,7 @@ CMD:addkey(playerid, p[])
 > Take away the car keys (vehicleid) from the player (playerid)
 > Always returns 1
 
-```
+```C
 CMD:removekey(playerid, p[])
 {
         RemovePlayerKeyVehicle(playerid, vehicle_infernus);
@@ -57,7 +57,7 @@ CMD:removekey(playerid, p[])
 > Pick up the keys from the player (playerid) from cars (vehicles)
 > Always returns 1
 
-```
+```C
 new LSPD_cars[5];
 public OnGameModeInit()
 {
@@ -81,7 +81,7 @@ CMD:addkeys(playerid, p[])
 > Take away the keys from all players from the car (vehicleid)
 > Always returns 1
 
-```
+```C
 CMD:remove_lspd(playerid, p[])
 {
         RemovePlayerKeyVehicles(playerid, LSPD_cars);
@@ -97,7 +97,7 @@ CMD:remove_lspd(playerid, p[])
 > Does the player (playerid) have the keys to the car (vehicleid)
 > Returns 0 if there are no keys, 1 if there are 
 
-```
+```C
 public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 {
         if(!IsPlayerKeyVehicle(playerid, vehicleid) && ispassenger == 0)
@@ -113,7 +113,7 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 > Take away all keys from the player (playerid)
 > Always returns 1
 
-```
+```C
 CMD:addkeys(playerid, p[])
 {
         RemoveAllPlayerKeysVehicle(playerid);
