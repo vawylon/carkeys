@@ -1,4 +1,4 @@
-# CarKeys - Ключи от авто PAWN
+# CarKeys - Keys control pawn
 
 ![image](https://pawn-wiki.ru/uploads/imgs/img_1635253141___-1.png)
 
@@ -17,7 +17,7 @@ public OnGameModeInit()
 CMD:addkey(playerid, p[])
 {
         GivePlayerKeyVehicle(playerid, vehicle_infernus);
-        SendClientMessage(playerid, 0x44FF44FF, " Теперь у вас есть ключи от Infernus!");
+        SendClientMessage(playerid, 0x44FF44FF, " Now you have the keys to Infernus!");
         return 1;
 }
 ```
@@ -36,7 +36,7 @@ public OnGameModeInit()
 CMD:addkey(playerid, p[])
 {
         GivePlayerKeyVehicle(playerid, vehicle_infernus);
-        SendClientMessage(playerid, 0x44FF44FF, " Теперь у вас есть ключи от Infernus!");
+        SendClientMessage(playerid, 0x44FF44FF, " Now you have the keys to Infernus!");
         return 1;
 }
 ```
@@ -48,7 +48,7 @@ CMD:addkey(playerid, p[])
 CMD:removekey(playerid, p[])
 {
         RemovePlayerKeyVehicle(playerid, vehicle_infernus);
-        SendClientMessage(playerid, 0x44FF44FF, " Теперь у вас нет ключей от Infernus!");
+        SendClientMessage(playerid, 0x44FF44FF, " Now you don't have the keys to Infernus!");
         return 1;
 }
 ```
@@ -72,7 +72,7 @@ public OnGameModeInit()
 CMD:addkeys(playerid, p[])
 {
         GivePlayerKeyVehicles(playerid, LSPD_cars);
-        SendClientMessage(playerid, 0x44FF44FF, " Теперь у вас есть ключи от автомобилей LSPD!");
+        SendClientMessage(playerid, 0x44FF44FF, " Now you have the keys to the LSPD cars!");
         return 1;
 }
 ```
@@ -85,7 +85,7 @@ CMD:addkeys(playerid, p[])
 CMD:remove_lspd(playerid, p[])
 {
         RemovePlayerKeyVehicles(playerid, LSPD_cars);
-        SendClientMessage(playerid, 0x44FF44FF, " Вы выбросили все ключи от автомобилей LSPD!");
+        SendClientMessage(playerid, 0x44FF44FF, " You threw away all the keys to the LSPD cars!");
         return 1;
 }
 ```
@@ -103,7 +103,7 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
         if(!IsPlayerKeyVehicle(playerid, vehicleid) && ispassenger == 0)
         {
                 RemovePlayerFromVehicle(playerid);
-                SendClientMessage(playerid, 0xFF4444FF, " У вас нет ключей от транспорта!");
+                SendClientMessage(playerid, 0xFF4444FF, "You don't have keys to transport!");
         }
         return 1;
 }
@@ -117,7 +117,7 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 CMD:addkeys(playerid, p[])
 {
         RemoveAllPlayerKeysVehicle(playerid);
-        SendClientMessage(playerid, 0x44FF44FF, " Вы выбросили все ключи от автомобилей!");
+        SendClientMessage(playerid, 0x44FF44FF, " You threw away all the car keys!");
         return 1;
 }
 ```
